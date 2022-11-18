@@ -11,41 +11,38 @@ import pkg from '../../../package.json';
 
 // Store
 import useUserSOLBalanceStore from '../../stores/useUserSOLBalanceStore';
+import { WalletSolBalance } from '../../components/WalletSolBalance';
+import axios from 'axios';
+import { SendTransactionRequest } from 'components/SendTransactionRequest';
 import { PublicKey } from '@solana/web3.js';
 
 export const HomeView: FC = ({ }) => {
   const wallet = useWallet();
   const { connection } = useConnection();
 
-  const balance = useUserSOLBalanceStore((s) => s.balance)
-  const { getUserSOLBalance } = useUserSOLBalanceStore()
-
-  useEffect(() => {
-    if (wallet.publicKey) {
-      console.log(wallet.publicKey.toBase58())
-      getUserSOLBalance(wallet.publicKey, connection)
-    }
-  }, [wallet.publicKey, connection, getUserSOLBalance])
+  const reference = useMemo(() => PublicKey.unique(), []);
 
   return (
-
     <div className="md:hero mx-auto p-4">
       <div className="md:hero-content flex flex-col">
         <h1 className="text-center text-5xl md:pl-12 font-bold text-transparent bg-clip-text bg-gradient-to-tr from-[#9945FF] to-[#14F195]">
           Solana Pay Scaffold <span className='text-sm font-normal align-top text-slate-700'>v{pkg.version}</span>
         </h1>
         <h4 className="md:w-full text-center text-slate-300 my-2">
-          <p>The fastest way to get started with transaction requests.</p>
+          <p>The fastest way to get started with Solana Pay</p>
         </h4>
-        <div className="max-w-md mx-auto mockup-code bg-primary p-6 my-2">
-          <pre data-prefix=">">
-            <code className="truncate">Start building on Solana  </code>
-          </pre>
+        <div className="hero rounded-2xl bg-base-200">
+          <div className="hero-content text-center">
+            <div className="max-w-lg">
+              <h1 className="text-3xl font-bold">Transaction Requests</h1>
+              <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+              <SendTransactionRequest reference={reference} />
+            </div>
+          </div>
         </div>
         <div className="text-center">
           <RequestAirdrop />
-          {/* {wallet.publicKey && <p>Public Key: {wallet.publicKey.toBase58()}</p>} */}
-          {wallet && <p>SOL Balance: {(balance || 0).toLocaleString()}</p>}
+          <WalletSolBalance />
         </div>
       </div>
     </div>

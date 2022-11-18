@@ -33,8 +33,9 @@ export const RequestAirdrop: FC = () => {
     return (
         <div>
             <button
-                className="px-8 m-2 btn animate-pulse bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ..."
+                className="px-8 m-2 btn btn-outline btn-secondary"
                 onClick={onClick}
+                disabled={!publicKey}
             >
                 <span>Airdrop 1 </span>
             </button>
