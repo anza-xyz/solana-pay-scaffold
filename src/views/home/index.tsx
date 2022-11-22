@@ -14,13 +14,13 @@ import useUserSOLBalanceStore from '../../stores/useUserSOLBalanceStore';
 import { WalletSolBalance } from '../../components/WalletSolBalance';
 import axios from 'axios';
 import { SendTransactionRequest } from 'components/SendTransactionRequest';
-import { PublicKey } from '@solana/web3.js';
+import { Keypair, PublicKey } from '@solana/web3.js';
+import useTransactionListener from 'hooks/useTransactionListener';
 
 export const HomeView: FC = ({ }) => {
-  const wallet = useWallet();
-  const { connection } = useConnection();
 
-  const reference = useMemo(() => PublicKey.unique(), []);
+  const reference = useMemo(() => Keypair.generate().publicKey, []);
+  useTransactionListener(reference);
 
   return (
     <div className="md:hero mx-auto p-4">

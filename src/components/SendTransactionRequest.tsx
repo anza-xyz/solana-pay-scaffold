@@ -43,7 +43,15 @@ export const SendTransactionRequest: FC<SendTransactionRequestProps> = ({ refere
             notify({ type: 'info', message: 'Fetched transaction!', description: message });
 
             const transaction = Transaction.from(Buffer.from(response.transaction, 'base64'));
+
+            console.log('Fetched transaction', transaction);
+            const currentSigners = transaction.signatures.filter(k => k.signature !== null).map(k => k.publicKey.toBase58());
+            const expectedSigners = transaction.instructions.flatMap(i => i.keys.filter(k => k.isSigner).map(k => k.pubkey.toBase58()));
+            console.log({ currentSigners, expectedSigners });
+
             await sendTransaction(transaction, connection);
+
+            // TODO: add listener to detect transactions w/ reference
         } catch (error: any) {
             notify({ type: 'error', message: `Transaction failed!`, description: error?.message, txid: signature });
             console.error(`Transaction failed! ${error?.message}`, signature);

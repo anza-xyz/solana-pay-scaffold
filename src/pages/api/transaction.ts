@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { Cluster, clusterApiUrl, Connection, PublicKey, Transaction, SystemProgram, LAMPORTS_PER_SOL } from '@solana/web3.js'
+import { Cluster, clusterApiUrl, Connection, PublicKey, Transaction, SystemProgram, LAMPORTS_PER_SOL, Keypair } from '@solana/web3.js'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 type GetResponse = {
@@ -43,8 +43,8 @@ async function postImpl(
 
   const transferInstruction = SystemProgram.transfer({
     fromPubkey: account,
-    toPubkey: PublicKey.unique(),
-    lamports: LAMPORTS_PER_SOL * 0.1,
+    toPubkey: Keypair.generate().publicKey,
+    lamports: LAMPORTS_PER_SOL / 1000,
   });
 
   // Add reference as a key to the instruction
