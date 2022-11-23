@@ -1,21 +1,12 @@
-// Next, React
-import { FC, useEffect, useMemo, useState } from 'react';
-import Link from 'next/link';
-
-// Wallet
-import { useWallet, useConnection } from '@solana/wallet-adapter-react';
-
-// Components
+import { FC, useMemo } from 'react';
 import { RequestAirdrop } from '../../components/RequestAirdrop';
 import pkg from '../../../package.json';
-
-// Store
-import useUserSOLBalanceStore from '../../stores/useUserSOLBalanceStore';
 import { WalletSolBalance } from '../../components/WalletSolBalance';
-import axios from 'axios';
 import { SendTransactionRequest } from 'components/SendTransactionRequest';
-import { Keypair, PublicKey } from '@solana/web3.js';
+import { Keypair } from '@solana/web3.js';
 import useTransactionListener from 'hooks/useTransactionListener';
+import { TransactionRequestQR } from 'components/TransactionRequestQR';
+import { Heading } from 'components/Heading';
 
 export const HomeView: FC = ({ }) => {
 
@@ -25,18 +16,18 @@ export const HomeView: FC = ({ }) => {
   return (
     <div className="md:hero mx-auto p-4">
       <div className="md:hero-content flex flex-col">
-        <h1 className="text-center text-5xl md:pl-12 font-bold text-transparent bg-clip-text bg-gradient-to-tr from-[#9945FF] to-[#14F195]">
+        <Heading>
           Solana Pay Scaffold <span className='text-sm font-normal align-top text-slate-700'>v{pkg.version}</span>
-        </h1>
+        </Heading>
         <h4 className="md:w-full text-center text-slate-300 my-2">
           <p>The fastest way to get started with Solana Pay</p>
         </h4>
-        <div className="hero rounded-2xl bg-base-200">
+        <div className="hero rounded-2xl bg-base-content">
           <div className="hero-content text-center">
-            <div className="max-w-lg">
-              <h1 className="text-3xl font-bold">Transaction Requests</h1>
-              <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+            <div className="max-w-lg flex flex-col gap-6">
+              <h1 className="text-3xl font-bold text-primary">Transaction Requests</h1>
               <SendTransactionRequest reference={reference} />
+              <TransactionRequestQR reference={reference} />
             </div>
           </div>
         </div>

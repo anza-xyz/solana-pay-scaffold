@@ -24,7 +24,7 @@ export const SendTransactionRequest: FC<SendTransactionRequestProps> = ({ refere
 
         let signature: TransactionSignature = '';
         try {
-            const { data } = await axios.post(`/api/transaction?cluster=${networkConfiguration}&reference=${reference.toBase58()}`, {
+            const { data } = await axios.post(`/api/transaction?network=${networkConfiguration}&reference=${reference.toBase58()}`, {
                 account: publicKey
             }, {
                 // Don't throw for 4xx responses, we handle them
@@ -40,7 +40,7 @@ export const SendTransactionRequest: FC<SendTransactionRequestProps> = ({ refere
             }
 
             const message = response.message;
-            notify({ type: 'info', message: 'Fetched transaction!', description: message });
+            notify({ type: 'info', message: 'Fetched transaction!', description: `message: ${message}` });
 
             const transaction = Transaction.from(Buffer.from(response.transaction, 'base64'));
 

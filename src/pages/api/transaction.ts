@@ -14,6 +14,7 @@ export type PostRequest = {
 export type PostResponse = {
   transaction: string,
   message: string,
+  network: Cluster,
 };
 
 export type PostError = {
@@ -28,10 +29,13 @@ function get(res: NextApiResponse<GetResponse>) {
 }
 
 async function postImpl(
-  connection: Connection,
+  network: Cluster,
   account: PublicKey,
   reference: PublicKey
 ): Promise<PostResponse> {
+  const endpoint = clusterApiUrl(network);
+  const connection = new Connection(endpoint);
+
   const { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
 
   // Create any transaction
@@ -66,6 +70,7 @@ async function postImpl(
   return {
     transaction: base64,
     message: 'Thankyou for your purchase!',
+    network,
   };
 }
 
@@ -73,8 +78,9 @@ function getFromQuery(
   req: NextApiRequest,
   field: string
 ): string | undefined {
+  if (!(field in req.query)) return undefined;
+
   const value = req.query[field];
-  if (!value) return value;
   if (typeof value === 'string') return value;
   // value is string[]
   if (value.length === 0) return undefined;
@@ -92,9 +98,9 @@ async function post(
     return
   }
 
-  const cluster = getFromQuery(req, 'cluster');
-  if (!cluster) {
-    res.status(400).json({ error: 'No cluster provided' });
+  const network = getFromQuery(req, 'network') as Cluster;
+  if (!network) {
+    res.status(400).json({ error: 'No network provided' });
     return
   }
 
@@ -105,11 +111,8 @@ async function post(
   }
 
   try {
-    const endpoint = clusterApiUrl(cluster as Cluster);
-    const connection = new Connection(endpoint);
-
     const postResponse = await postImpl(
-      connection,
+      network,
       new PublicKey(account),
       new PublicKey(reference),
     );
