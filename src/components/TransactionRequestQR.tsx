@@ -26,7 +26,7 @@ export const TransactionRequestQR: FC<TransactionRequestQRProps> = ({ reference 
       qrRef.current.innerHTML = ''
       qr.append(qrRef.current)
     }
-  }, [])
+  }, [networkConfiguration, reference]);
 
   return (
     <div className="rounded-2xl">

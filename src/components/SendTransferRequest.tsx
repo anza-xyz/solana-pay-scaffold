@@ -1,16 +1,16 @@
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
-import { PublicKey, Transaction, TransactionSignature } from '@solana/web3.js';
+import { Keypair, LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction, TransactionSignature } from '@solana/web3.js';
 import axios from 'axios';
 import { PostError, PostResponse } from 'pages/api/transaction';
 import { FC, useCallback } from 'react';
 import { notify } from '../utils/notifications';
 import { useNetworkConfiguration } from '../contexts/NetworkConfigurationProvider'
 
-type SendTransactionRequestProps = {
+type SendTransferRequestProps = {
   reference: PublicKey,
 };
 
-export const SendTransactionRequest: FC<SendTransactionRequestProps> = ({ reference }) => {
+export const SendTransferRequest: FC<SendTransferRequestProps> = ({ reference }) => {
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
   const { networkConfiguration } = useNetworkConfiguration();
@@ -24,27 +24,30 @@ export const SendTransactionRequest: FC<SendTransactionRequestProps> = ({ refere
 
     let signature: TransactionSignature = '';
     try {
-      const { data } = await axios.post(`/api/transaction?network=${networkConfiguration}&reference=${reference.toBase58()}`, {
-        account: publicKey
-      }, {
-        // Don't throw for 4xx responses, we handle them
-        validateStatus: (s) => s < 500
+      const { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
+
+      const transaction = new Transaction({
+        feePayer: publicKey,
+        blockhash,
+        lastValidBlockHeight,
       });
 
-      const response = data as PostResponse | PostError;
+      const transferInstruction = SystemProgram.transfer({
+        fromPubkey: publicKey,
+        toPubkey: Keypair.generate().publicKey,
+        lamports: LAMPORTS_PER_SOL / 1000,
+      });
 
-      if ('error' in response) {
-        console.error(`Failed to fetch transaction! ${response.error}`);
-        notify({ type: 'error', message: 'Failed to fetch transaction!', description: response.error });
-        return;
-      }
+      // Add reference as a key to the instruction
+      transferInstruction.keys.push({
+        pubkey: reference,
+        isSigner: false,
+        isWritable: false,
+      });
 
-      const message = response.message;
-      notify({ type: 'info', message: 'Fetched transaction!', description: `message: ${message}` });
+      transaction.add(transferInstruction);
 
-      const transaction = Transaction.from(Buffer.from(response.transaction, 'base64'));
-
-      console.log('Fetched transaction', transaction);
+      console.log('Created transaction', transaction);
       const currentSigners = transaction.signatures.filter(k => k.signature !== null).map(k => k.publicKey.toBase58());
       const expectedSigners = transaction.instructions.flatMap(i => i.keys.filter(k => k.isSigner).map(k => k.pubkey.toBase58()));
       console.log({ currentSigners, expectedSigners });
@@ -55,7 +58,7 @@ export const SendTransactionRequest: FC<SendTransactionRequestProps> = ({ refere
       console.error(`Transaction failed! ${error?.message}`, signature);
       return;
     }
-  }, [publicKey, networkConfiguration, reference, sendTransaction, connection]);
+  }, [publicKey, connection, reference, sendTransaction]);
 
   return (
     <div>
