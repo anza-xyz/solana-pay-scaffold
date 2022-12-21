@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import {
   CheckCircleIcon,
   InformationCircleIcon,
@@ -7,7 +7,6 @@ import {
 import { XIcon } from '@heroicons/react/solid'
 import useNotificationStore from '../stores/useNotificationStore'
 import { useConnection } from '@solana/wallet-adapter-react';
-import { getExplorerUrl } from '../utils/explorer'
 import { useNetworkConfiguration } from 'contexts/NetworkConfigurationProvider';
 
 const NotificationList = () => {
@@ -86,7 +85,7 @@ const Notification = ({ type, message, description, txid, onHide }) => {
             ) : null}
             {txid ? (
               <div className="flex flex-row">
-         
+
                 <a
                   href={'https://explorer.solana.com/tx/' + txid + `?cluster=${networkConfiguration}`}
                   target="_blank"

@@ -9,18 +9,18 @@ import useUserSOLBalanceStore from '../stores/useUserSOLBalanceStore';
 
 
 export const WalletSolBalance: FC = ({ }) => {
-    const { publicKey } = useWallet();
-    const { connection } = useConnection();
+  const { publicKey } = useWallet();
+  const { connection } = useConnection();
 
-    const balance = useUserSOLBalanceStore((s) => s.balance);
-    const { getUserSOLBalance } = useUserSOLBalanceStore();
+  const balance = useUserSOLBalanceStore((s) => s.balance);
+  const { getUserSOLBalance } = useUserSOLBalanceStore();
 
-    useEffect(() => {
-        if (publicKey) {
-            console.log(publicKey.toBase58())
-            getUserSOLBalance(publicKey, connection)
-        }
-    }, [publicKey, connection, getUserSOLBalance]);
+  useEffect(() => {
+    if (publicKey) {
+      console.log(publicKey.toBase58())
+      getUserSOLBalance(publicKey, connection)
+    }
+  }, [publicKey, connection, getUserSOLBalance]);
 
-    return publicKey ? <p>SOL Balance: {(balance || 0).toLocaleString()}</p> : null;
+  return publicKey ? <p>SOL Balance: {(balance || 0).toLocaleString()}</p> : null;
 }

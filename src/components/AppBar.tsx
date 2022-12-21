@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import Link from "next/link";
-
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useAutoConnect } from '../contexts/AutoConnectProvider';
 import NetworkSwitcher from './NetworkSwitcher';
@@ -20,7 +19,7 @@ export const AppBar: FC = props => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
           </label>
-        
+
           <div className="hidden sm:inline w-22 h-22 md:p-2">
             <svg width="100%" height="22" viewBox="0 0 646 96" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clipPath="url(#clip0_1064_606)">
@@ -53,10 +52,10 @@ export const AppBar: FC = props => {
         <div className="hidden md:inline md:navbar-center">
           <div className="flex items-stretch">
             <Link href="/">
-              <a className="btn btn-ghost btn-sm rounded-btn">Home</a>
+              <a className="btn btn-ghost btn-sm rounded-btn">Transaction Request</a>
             </Link>
-            <Link href="/basics">
-              <a className="btn btn-ghost btn-sm rounded-btn">Basics</a>
+            <Link href="/transfer">
+              <a className="btn btn-ghost btn-sm rounded-btn">Transfer Request</a>
             </Link>
           </div>
         </div>
