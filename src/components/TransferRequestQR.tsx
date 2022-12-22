@@ -11,6 +11,7 @@ export const TransferRequestQR: FC<TransferRequestQRProps> = ({ reference }) => 
   const qrRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Create a transfer request QR code
     const urlParams: TransferRequestURLFields = {
       recipient: Keypair.generate().publicKey,
       amount: new BigNumber(1 / 1000), // amount in SOL

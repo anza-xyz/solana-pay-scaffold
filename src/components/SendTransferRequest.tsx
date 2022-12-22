@@ -1,10 +1,7 @@
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { Keypair, LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction, TransactionSignature } from '@solana/web3.js';
-import axios from 'axios';
-import { PostError, PostResponse } from 'pages/api/transaction';
 import { FC, useCallback } from 'react';
 import { notify } from '../utils/notifications';
-import { useNetworkConfiguration } from '../contexts/NetworkConfigurationProvider'
 
 type SendTransferRequestProps = {
   reference: PublicKey,
@@ -13,7 +10,6 @@ type SendTransferRequestProps = {
 export const SendTransferRequest: FC<SendTransferRequestProps> = ({ reference }) => {
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
-  const { networkConfiguration } = useNetworkConfiguration();
 
   const onClick = useCallback(async () => {
     if (!publicKey) {
@@ -26,6 +22,7 @@ export const SendTransferRequest: FC<SendTransferRequestProps> = ({ reference })
     try {
       const { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
 
+      // Transfer transaction
       const transaction = new Transaction({
         feePayer: publicKey,
         blockhash,
@@ -47,11 +44,13 @@ export const SendTransferRequest: FC<SendTransferRequestProps> = ({ reference })
 
       transaction.add(transferInstruction);
 
+      // Debug: log current and expected signers of the transaction
       console.log('Created transaction', transaction);
       const currentSigners = transaction.signatures.filter(k => k.signature !== null).map(k => k.publicKey.toBase58());
       const expectedSigners = transaction.instructions.flatMap(i => i.keys.filter(k => k.isSigner).map(k => k.pubkey.toBase58()));
       console.log({ currentSigners, expectedSigners });
 
+      // Send the transaction
       await sendTransaction(transaction, connection);
     } catch (error: any) {
       notify({ type: 'error', message: `Transaction failed!`, description: error?.message, txid: signature });

@@ -24,6 +24,7 @@ export const SendTransactionRequest: FC<SendTransactionRequestProps> = ({ refere
 
     let signature: TransactionSignature = '';
     try {
+      // Request the transaction from transaction request API
       const { data } = await axios.post(`/api/transaction?network=${networkConfiguration}&reference=${reference.toBase58()}`, {
         account: publicKey
       }, {
@@ -42,13 +43,17 @@ export const SendTransactionRequest: FC<SendTransactionRequestProps> = ({ refere
       const message = response.message;
       notify({ type: 'info', message: 'Fetched transaction!', description: `message: ${message}` });
 
+      // De-serialize the returned transaction
       const transaction = Transaction.from(Buffer.from(response.transaction, 'base64'));
 
+      // Debug: log current and expected signers of the transaction
+      // The API can return a partially signed transaction
       console.log('Fetched transaction', transaction);
       const currentSigners = transaction.signatures.filter(k => k.signature !== null).map(k => k.publicKey.toBase58());
       const expectedSigners = transaction.instructions.flatMap(i => i.keys.filter(k => k.isSigner).map(k => k.pubkey.toBase58()));
       console.log({ currentSigners, expectedSigners });
 
+      // Send the transaction
       await sendTransaction(transaction, connection);
     } catch (error: any) {
       notify({ type: 'error', message: `Transaction failed!`, description: error?.message, txid: signature });

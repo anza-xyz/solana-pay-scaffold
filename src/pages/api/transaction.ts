@@ -21,6 +21,7 @@ export type PostError = {
   error: string
 };
 
+// Response for GET request
 function get(res: NextApiResponse<GetResponse>) {
   res.status(200).json({
     label: 'My Store',
@@ -28,11 +29,13 @@ function get(res: NextApiResponse<GetResponse>) {
   });
 }
 
+// Main body of the POST request, this returns the transaction
 async function postImpl(
   network: Cluster,
   account: PublicKey,
   reference: PublicKey
 ): Promise<PostResponse> {
+  // Can also use a custom RPC here
   const endpoint = clusterApiUrl(network);
   const connection = new Connection(endpoint);
 
@@ -52,6 +55,7 @@ async function postImpl(
   });
 
   // Add reference as a key to the instruction
+  // This allows us to listen for this transaction
   transferInstruction.keys.push({
     pubkey: reference,
     isSigner: false,
@@ -74,6 +78,7 @@ async function postImpl(
   };
 }
 
+// We pass eg. network in query params, this function extracts the value of a query param
 function getFromQuery(
   req: NextApiRequest,
   field: string

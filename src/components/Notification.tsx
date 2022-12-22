@@ -6,7 +6,6 @@ import {
 } from '@heroicons/react/outline'
 import { XIcon } from '@heroicons/react/solid'
 import useNotificationStore from '../stores/useNotificationStore'
-import { useConnection } from '@solana/wallet-adapter-react';
 import { useNetworkConfiguration } from 'contexts/NetworkConfigurationProvider';
 
 const NotificationList = () => {
@@ -50,7 +49,7 @@ const Notification = ({ type, message, description, txid, onHide }) => {
   useEffect(() => {
     const id = setTimeout(() => {
       onHide()
-    }, 80000);
+    }, 10000);
 
     return () => {
       clearInterval(id);
