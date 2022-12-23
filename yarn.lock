@@ -590,9 +590,9 @@
     "@solana/wallet-adapter-base" "^0.9.20"
     "@solana/wallet-adapter-react" "^0.15.26"
 
-"@solana/wallet-adapter-react@^0.15.21-rc.4", "@solana/wallet-adapter-react@^0.15.26":
-  version "0.15.26"
-  resolved "https://registry.npmjs.org/@solana/wallet-adapter-react/-/wallet-adapter-react-0.15.26.tgz"
+"@solana/wallet-adapter-react@^0.15.26", "@solana/wallet-adapter-react@^0.15.27":
+  version "0.15.27"
+  resolved "https://registry.yarnpkg.com/@solana/wallet-adapter-react/-/wallet-adapter-react-0.15.27.tgz#f96ce5b7a1710a5e0b55b93b2b2a9f0b86b57fb0"
   dependencies:
     "@solana-mobile/wallet-adapter-mobile" "^0.9.9"
     "@solana/wallet-adapter-base" "^0.9.20"
