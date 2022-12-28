@@ -583,16 +583,16 @@
   dependencies:
     "@solana/wallet-adapter-base" "^0.9.20"
 
-"@solana/wallet-adapter-react-ui@^0.9.19-rc.4":
-  version "0.9.25"
-  resolved "https://registry.npmjs.org/@solana/wallet-adapter-react-ui/-/wallet-adapter-react-ui-0.9.25.tgz"
+"@solana/wallet-adapter-react-ui@^0.9.27":
+  version "0.9.27"
+  resolved "https://registry.yarnpkg.com/@solana/wallet-adapter-react-ui/-/wallet-adapter-react-ui-0.9.27.tgz#eb0cf3fcf205c841531679c511cf833103d9ee05"
   dependencies:
     "@solana/wallet-adapter-base" "^0.9.20"
-    "@solana/wallet-adapter-react" "^0.15.26"
+    "@solana/wallet-adapter-react" "^0.15.28"
 
-"@solana/wallet-adapter-react@^0.15.21-rc.4", "@solana/wallet-adapter-react@^0.15.26":
-  version "0.15.26"
-  resolved "https://registry.npmjs.org/@solana/wallet-adapter-react/-/wallet-adapter-react-0.15.26.tgz"
+"@solana/wallet-adapter-react@^0.15.21-rc.4", "@solana/wallet-adapter-react@^0.15.28":
+  version "0.15.28"
+  resolved "https://registry.yarnpkg.com/@solana/wallet-adapter-react/-/wallet-adapter-react-0.15.28.tgz#0818cdbe295db901fa17cb11133c42b4124fa298"
   dependencies:
     "@solana-mobile/wallet-adapter-mobile" "^0.9.9"
     "@solana/wallet-adapter-base" "^0.9.20"
