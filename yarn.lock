@@ -4209,13 +4209,9 @@ type-fest@^0.20.2:
   version "0.20.2"
   resolved "https://registry.npmjs.org/type-fest/-/type-fest-0.20.2.tgz"
 
-typescript@4.5.4:
-  version "4.5.4"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-4.5.4.tgz"
-
-typescript@^4.6.2:
-  version "4.9.4"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-4.9.4.tgz"
+typescript@4.9.5, typescript@^4.6.2:
+  version "4.9.5"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.5.tgz#095979f9bcc0d09da324d58d03ce8f8374cbe65a"
 
 uint8arrays@3.1.0, uint8arrays@^3.0.0:
   version "3.1.0"
