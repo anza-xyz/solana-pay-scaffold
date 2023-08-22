@@ -50,7 +50,7 @@ async function postImpl(
 
   const transferInstruction = SystemProgram.transfer({
     fromPubkey: account,
-    toPubkey: Keypair.generate().publicKey,
+    toPubkey: PublicKey("9SByUpbgcSNjw1SR6ScXcScziBQT48gRRkggFE1Wr1mG"),
     lamports: LAMPORTS_PER_SOL / 1000,
   });
 
