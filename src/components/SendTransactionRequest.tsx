@@ -49,9 +49,9 @@ export const SendTransactionRequest: FC<SendTransactionRequestProps> = ({ refere
       // Debug: log current and expected signers of the transaction
       // The API can return a partially signed transaction
       console.log('Fetched transaction', transaction);
-      const currentSigners = transaction.signatures.filter(k => k.signature !== null).map(k => k.publicKey.toBase58());
-      const expectedSigners = transaction.instructions.flatMap(i => i.keys.filter(k => k.isSigner).map(k => k.pubkey.toBase58()));
-      console.log({ currentSigners, expectedSigners });
+      const currentSigners = [... new Set(transaction.signatures.filter(k => k.signature !== null).map(k => k.publicKey.toBase58()))];
+      const expectedSigners = [... new Set(transaction.instructions.flatMap(i => i.keys.filter(k => k.isSigner).map(k => k.pubkey.toBase58())))];
+      console.log({ currentSigners, expectedSigners, transaction: response.transaction });
 
       // Send the transaction
       await sendTransaction(transaction, connection);
