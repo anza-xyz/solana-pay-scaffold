@@ -14,7 +14,7 @@
     "@noble/ed25519": "^1.7.1",
     "@solana/pay": "^0.2.4",
     "@solana/wallet-adapter-base": "^0.9.18",
-    "@solana/wallet-adapter-react": "^0.15.21-rc.4",
+    "@solana/wallet-adapter-react": "^0.15.32",
     "@solana/wallet-adapter-react-ui": "^0.9.19-rc.4",
     "@solana/wallet-adapter-wallets": "^0.19.4",
     "@solana/web3.js": "^1.70.3",

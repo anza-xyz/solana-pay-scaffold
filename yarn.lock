@@ -262,9 +262,19 @@
     jsbi "^3.1.5"
     sha.js "^2.4.11"
 
+"@noble/curves@^1.1.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@noble/curves/-/curves-1.3.0.tgz#01be46da4fd195822dab821e72f71bf4aeec635e"
+  dependencies:
+    "@noble/hashes" "1.3.3"
+
 "@noble/ed25519@^1.7.0", "@noble/ed25519@^1.7.1":
   version "1.7.1"
   resolved "https://registry.npmjs.org/@noble/ed25519/-/ed25519-1.7.1.tgz"
+
+"@noble/hashes@1.3.3":
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/@noble/hashes/-/hashes-1.3.3.tgz#39908da56a4adc270147bb07968bf3b16cfe1699"
 
 "@noble/hashes@^1.1.2":
   version "1.1.3"
@@ -337,26 +347,33 @@
   version "3.1.0"
   resolved "https://registry.npmjs.org/@socket.io/component-emitter/-/component-emitter-3.1.0.tgz"
 
-"@solana-mobile/mobile-wallet-adapter-protocol-web3js@^0.9.9":
-  version "0.9.9"
-  resolved "https://registry.npmjs.org/@solana-mobile/mobile-wallet-adapter-protocol-web3js/-/mobile-wallet-adapter-protocol-web3js-0.9.9.tgz"
+"@solana-mobile/mobile-wallet-adapter-protocol-web3js@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@solana-mobile/mobile-wallet-adapter-protocol-web3js/-/mobile-wallet-adapter-protocol-web3js-2.1.2.tgz#a64b96f99540192e0b7343f30c9d58db7d8a38cd"
   dependencies:
-    "@solana-mobile/mobile-wallet-adapter-protocol" "^0.9.9"
+    "@solana-mobile/mobile-wallet-adapter-protocol" "^2.1.2"
     bs58 "^5.0.0"
-    js-base64 "^3.7.2"
+    js-base64 "^3.7.5"
 
-"@solana-mobile/mobile-wallet-adapter-protocol@^0.9.9":
-  version "0.9.9"
-  resolved "https://registry.npmjs.org/@solana-mobile/mobile-wallet-adapter-protocol/-/mobile-wallet-adapter-protocol-0.9.9.tgz"
-
-"@solana-mobile/wallet-adapter-mobile@^0.9.9":
-  version "0.9.9"
-  resolved "https://registry.npmjs.org/@solana-mobile/wallet-adapter-mobile/-/wallet-adapter-mobile-0.9.9.tgz"
+"@solana-mobile/mobile-wallet-adapter-protocol@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@solana-mobile/mobile-wallet-adapter-protocol/-/mobile-wallet-adapter-protocol-2.1.2.tgz#e812c6bc07e7552902225ea62bc0f829ddf2acdf"
   dependencies:
+    "@solana/wallet-standard" "^1.1.2"
+    "@solana/wallet-standard-util" "^1.1.1"
+    "@wallet-standard/core" "^1.0.3"
+    js-base64 "^3.7.5"
+
+"@solana-mobile/wallet-adapter-mobile@^2.0.0":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@solana-mobile/wallet-adapter-mobile/-/wallet-adapter-mobile-2.1.2.tgz#dcf289280a8baa84ea76056d48ee427ac17893f5"
+  dependencies:
+    "@solana-mobile/mobile-wallet-adapter-protocol-web3js" "^2.1.2"
+    "@solana/wallet-adapter-base" "^0.9.23"
+    "@solana/wallet-standard-features" "^1.2.0"
+    js-base64 "^3.7.5"
+  optionalDependencies:
     "@react-native-async-storage/async-storage" "^1.17.7"
-    "@solana-mobile/mobile-wallet-adapter-protocol-web3js" "^0.9.9"
-    "@solana/wallet-adapter-base" "^0.9.17"
-    js-base64 "^3.7.2"
 
 "@solana/buffer-layout-utils@^0.2.0":
   version "0.2.0"
@@ -417,11 +434,14 @@
   dependencies:
     "@solana/wallet-adapter-base" "^0.9.20"
 
-"@solana/wallet-adapter-base@^0.9.17", "@solana/wallet-adapter-base@^0.9.18", "@solana/wallet-adapter-base@^0.9.20":
-  version "0.9.20"
-  resolved "https://registry.npmjs.org/@solana/wallet-adapter-base/-/wallet-adapter-base-0.9.20.tgz"
+"@solana/wallet-adapter-base@^0.9.17", "@solana/wallet-adapter-base@^0.9.18", "@solana/wallet-adapter-base@^0.9.20", "@solana/wallet-adapter-base@^0.9.22", "@solana/wallet-adapter-base@^0.9.23":
+  version "0.9.23"
+  resolved "https://registry.yarnpkg.com/@solana/wallet-adapter-base/-/wallet-adapter-base-0.9.23.tgz#3b17c28afd44e173f44f658bf9700fd637e12a11"
   dependencies:
-    eventemitter3 "^4.0.0"
+    "@solana/wallet-standard-features" "^1.1.0"
+    "@wallet-standard/base" "^1.0.1"
+    "@wallet-standard/features" "^1.0.3"
+    eventemitter3 "^4.0.7"
 
 "@solana/wallet-adapter-bitkeep@^0.3.16":
   version "0.3.16"
@@ -590,13 +610,13 @@
     "@solana/wallet-adapter-base" "^0.9.20"
     "@solana/wallet-adapter-react" "^0.15.26"
 
-"@solana/wallet-adapter-react@^0.15.21-rc.4", "@solana/wallet-adapter-react@^0.15.26":
-  version "0.15.26"
-  resolved "https://registry.npmjs.org/@solana/wallet-adapter-react/-/wallet-adapter-react-0.15.26.tgz"
+"@solana/wallet-adapter-react@^0.15.26", "@solana/wallet-adapter-react@^0.15.32":
+  version "0.15.32"
+  resolved "https://registry.yarnpkg.com/@solana/wallet-adapter-react/-/wallet-adapter-react-0.15.32.tgz#3e8a949dbf183460d54fee707374f22799199c01"
   dependencies:
-    "@solana-mobile/wallet-adapter-mobile" "^0.9.9"
-    "@solana/wallet-adapter-base" "^0.9.20"
-    "@solana/wallet-standard-wallet-adapter-react" "^1.0.0"
+    "@solana-mobile/wallet-adapter-mobile" "^2.0.0"
+    "@solana/wallet-adapter-base" "^0.9.22"
+    "@solana/wallet-standard-wallet-adapter-react" "^1.0.1"
 
 "@solana/wallet-adapter-safepal@^0.5.15":
   version "0.5.15"
@@ -761,46 +781,69 @@
   dependencies:
     "@solana/wallet-adapter-base" "^0.9.20"
 
-"@solana/wallet-standard-chains@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@solana/wallet-standard-chains/-/wallet-standard-chains-1.0.0.tgz"
+"@solana/wallet-standard-chains@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@solana/wallet-standard-chains/-/wallet-standard-chains-1.1.0.tgz#459b297e71b0d9c1196c11a0578b38c85998be7d"
   dependencies:
-    "@wallet-standard/base" "^1.0.0"
+    "@wallet-standard/base" "^1.0.1"
 
-"@solana/wallet-standard-features@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@solana/wallet-standard-features/-/wallet-standard-features-1.0.0.tgz"
+"@solana/wallet-standard-core@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@solana/wallet-standard-core/-/wallet-standard-core-1.1.1.tgz#7187c085dcee38719902217a7ecdd1bf3f27afa3"
   dependencies:
-    "@wallet-standard/base" "^1.0.0"
-    "@wallet-standard/features" "^1.0.0"
+    "@solana/wallet-standard-chains" "^1.1.0"
+    "@solana/wallet-standard-features" "^1.2.0"
+    "@solana/wallet-standard-util" "^1.1.1"
 
-"@solana/wallet-standard-util@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@solana/wallet-standard-util/-/wallet-standard-util-1.0.0.tgz"
+"@solana/wallet-standard-features@^1.1.0", "@solana/wallet-standard-features@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@solana/wallet-standard-features/-/wallet-standard-features-1.2.0.tgz#be8b3824abf5ebcfeaa7298445bf53f76a27c935"
   dependencies:
-    "@solana/wallet-standard-chains" "^1.0.0"
-    "@solana/wallet-standard-features" "^1.0.0"
+    "@wallet-standard/base" "^1.0.1"
+    "@wallet-standard/features" "^1.0.3"
 
-"@solana/wallet-standard-wallet-adapter-base@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@solana/wallet-standard-wallet-adapter-base/-/wallet-standard-wallet-adapter-base-1.0.0.tgz"
+"@solana/wallet-standard-util@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@solana/wallet-standard-util/-/wallet-standard-util-1.1.1.tgz#f645fdd8b7d3c553a3b59aa19c25c51a1badce66"
   dependencies:
-    "@solana/wallet-adapter-base" "^0.9.18"
-    "@solana/wallet-standard-chains" "^1.0.0"
-    "@solana/wallet-standard-features" "^1.0.0"
-    "@solana/wallet-standard-util" "^1.0.0"
-    "@wallet-standard/app" "^1.0.0"
-    "@wallet-standard/base" "^1.0.0"
-    "@wallet-standard/features" "^1.0.0"
-    "@wallet-standard/wallet" "^1.0.0"
+    "@noble/curves" "^1.1.0"
+    "@solana/wallet-standard-chains" "^1.1.0"
+    "@solana/wallet-standard-features" "^1.2.0"
 
-"@solana/wallet-standard-wallet-adapter-react@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@solana/wallet-standard-wallet-adapter-react/-/wallet-standard-wallet-adapter-react-1.0.0.tgz"
+"@solana/wallet-standard-wallet-adapter-base@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@solana/wallet-standard-wallet-adapter-base/-/wallet-standard-wallet-adapter-base-1.1.2.tgz#f030f412cd16b06e95c6da5548a03113319d3620"
   dependencies:
-    "@solana/wallet-standard-wallet-adapter-base" "^1.0.0"
-    "@wallet-standard/app" "^1.0.0"
-    "@wallet-standard/base" "^1.0.0"
+    "@solana/wallet-adapter-base" "^0.9.23"
+    "@solana/wallet-standard-chains" "^1.1.0"
+    "@solana/wallet-standard-features" "^1.2.0"
+    "@solana/wallet-standard-util" "^1.1.1"
+    "@wallet-standard/app" "^1.0.1"
+    "@wallet-standard/base" "^1.0.1"
+    "@wallet-standard/features" "^1.0.3"
+    "@wallet-standard/wallet" "^1.0.1"
+
+"@solana/wallet-standard-wallet-adapter-react@^1.0.1", "@solana/wallet-standard-wallet-adapter-react@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@solana/wallet-standard-wallet-adapter-react/-/wallet-standard-wallet-adapter-react-1.1.2.tgz#a7bc71786e8f891d2dd83f7de30db4708767a56a"
+  dependencies:
+    "@solana/wallet-standard-wallet-adapter-base" "^1.1.2"
+    "@wallet-standard/app" "^1.0.1"
+    "@wallet-standard/base" "^1.0.1"
+
+"@solana/wallet-standard-wallet-adapter@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@solana/wallet-standard-wallet-adapter/-/wallet-standard-wallet-adapter-1.1.2.tgz#a9ff9e4d5c379e4f38c03a2b69c9a221904181b6"
+  dependencies:
+    "@solana/wallet-standard-wallet-adapter-base" "^1.1.2"
+    "@solana/wallet-standard-wallet-adapter-react" "^1.1.2"
+
+"@solana/wallet-standard@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@solana/wallet-standard/-/wallet-standard-1.1.2.tgz#b68e38db863f6945979fe278f2cecc2e21f84c2d"
+  dependencies:
+    "@solana/wallet-standard-core" "^1.1.1"
+    "@solana/wallet-standard-wallet-adapter" "^1.1.2"
 
 "@solana/web3.js@^1.32.0", "@solana/web3.js@^1.36.0", "@solana/web3.js@^1.44.3", "@solana/web3.js@^1.61.0", "@solana/web3.js@^1.70.3":
   version "1.70.3"
@@ -1170,23 +1213,32 @@
     "@typescript-eslint/types" "5.10.0"
     eslint-visitor-keys "^3.0.0"
 
-"@wallet-standard/app@^1.0.0":
+"@wallet-standard/app@^1.0.1":
   version "1.0.1"
   resolved "https://registry.npmjs.org/@wallet-standard/app/-/app-1.0.1.tgz"
   dependencies:
     "@wallet-standard/base" "^1.0.1"
 
-"@wallet-standard/base@^1.0.0", "@wallet-standard/base@^1.0.1":
+"@wallet-standard/base@^1.0.1":
   version "1.0.1"
   resolved "https://registry.npmjs.org/@wallet-standard/base/-/base-1.0.1.tgz"
 
-"@wallet-standard/features@^1.0.0":
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/@wallet-standard/features/-/features-1.0.1.tgz"
+"@wallet-standard/core@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@wallet-standard/core/-/core-1.0.3.tgz#3b6743e207ca4e1e725ae20f1838b400fb0694ff"
+  dependencies:
+    "@wallet-standard/app" "^1.0.1"
+    "@wallet-standard/base" "^1.0.1"
+    "@wallet-standard/features" "^1.0.3"
+    "@wallet-standard/wallet" "^1.0.1"
+
+"@wallet-standard/features@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@wallet-standard/features/-/features-1.0.3.tgz#c992876c5e4f7a0672f8869c4146c87e0dfe48c8"
   dependencies:
     "@wallet-standard/base" "^1.0.1"
 
-"@wallet-standard/wallet@^1.0.0":
+"@wallet-standard/wallet@^1.0.1":
   version "1.0.1"
   resolved "https://registry.npmjs.org/@wallet-standard/wallet/-/wallet-1.0.1.tgz"
   dependencies:
@@ -2498,7 +2550,7 @@ ethereumjs-util@^7.1.5:
     ethereum-cryptography "^0.1.3"
     rlp "^2.2.4"
 
-eventemitter3@^4.0.0, eventemitter3@^4.0.4, eventemitter3@^4.0.7:
+eventemitter3@^4.0.4, eventemitter3@^4.0.7:
   version "4.0.7"
   resolved "https://registry.npmjs.org/eventemitter3/-/eventemitter3-4.0.7.tgz"
 
@@ -3008,6 +3060,10 @@ joycon@^2.2.5:
 js-base64@^3.7.2:
   version "3.7.2"
   resolved "https://registry.npmjs.org/js-base64/-/js-base64-3.7.2.tgz"
+
+js-base64@^3.7.5:
+  version "3.7.7"
+  resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-3.7.7.tgz#e51b84bf78fbf5702b9541e2cb7bfcb893b43e79"
 
 js-sha3@^0.8.0:
   version "0.8.0"
